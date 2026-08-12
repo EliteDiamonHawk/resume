@@ -1,4 +1,4 @@
-\## What is this?
+## What is this?
 
 
 
@@ -6,7 +6,7 @@ This is the resume repo for Dylan Huang
 
 
 
-\## Censorship
+## Censorship
 
 
 
