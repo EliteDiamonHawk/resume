@@ -57,6 +57,31 @@ body {
   margin: 0 0 10px;
 }
 
+.header.with-image {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--header-image-size, 5rem);
+  column-gap: 14px;
+  align-items: start;
+}
+
+.header-content {
+  min-width: 0;
+}
+
+.header-image {
+  width: var(--header-image-size, 5rem);
+  height: var(--header-image-size, 5rem);
+  overflow: hidden;
+}
+
+.header-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .name {
   margin: 0 0 4px;
   font-size: 25pt;
@@ -223,7 +248,9 @@ body {
 
   <main class="resume">
     
-    <header class="header">
+    <header class="header with-image">
+
+      <div class="header-content">
 
       <h1 class="name">
         Dylan Huang
@@ -232,9 +259,17 @@ body {
       
 
       <div class="contact">
-        San Jose, CA<span class="sep">|</span><a href="https://www.linkedin.com/in/sjsu-dylanhuang">LinkedIn</a><span class="sep">|</span><a href="https://github.com/EliteDiamonHawk">GitHub</a><span class="sep">|</span><a href="https://sjsu.joinhandshake.com/profiles/sjsu-dylanhuang">HandShake</a><span class="sep">|</span><a href="https://www.instagram.com/elitediamonhawk">Instagram</a><span class="sep">|</span><a href="https://x.com/EliteDiamonHawk">X</a>
+        San Jose, CA, US<span class="sep">|</span><a href="https://www.linkedin.com/in/sjsu-dylanhuang">LinkedIn</a><span class="sep">|</span><a href="https://github.com/EliteDiamonHawk">GitHub</a><span class="sep">|</span><a href="https://sjsu.joinhandshake.com/profiles/sjsu-dylanhuang">HandShake</a><span class="sep">|</span><a href="https://www.instagram.com/elitediamonhawk">Instagram</a><span class="sep">|</span><a href="https://x.com/EliteDiamonHawk">X</a>
       </div>
 
+      
+
+      </div>
+
+      
+        <div class="header-image">
+          <img src="https://elitediamonhawk.github.io/resume/resume-qrcode.svg" alt="">
+        </div>
       
 
     </header>
@@ -254,7 +289,7 @@ body {
         </div>
 
         <div class="right">
-          San Jose, CA
+          
         </div>
       </div>
 
@@ -266,7 +301,7 @@ body {
               </div>
 
               <div class="meta-right right">
-                Aug. 2025 -- (Projected) May 2029
+                Aug. 2025 -- May 2029
               </div>
 
             </div>
@@ -290,7 +325,7 @@ body {
         </div>
 
         <div class="right">
-          Tracy, CA
+          
         </div>
       </div>
 
@@ -372,7 +407,7 @@ body {
         </div>
 
         <div class="right">
-          Mar. 2024
+          Mar. 2024 -- Mar. 2024
         </div>
       </div>
 
@@ -608,7 +643,7 @@ body {
               </div>
 
               <div class="meta-right right">
-                San Jose, CA
+                
               </div>
 
             </div>
@@ -624,6 +659,44 @@ body {
     </section>
   
   </main>
+
+  
+  <script>
+    (function () {
+      function fit() {
+        document
+          .querySelectorAll(".header.with-image")
+          .forEach(header => {
+            const content = header.querySelector(".header-content");
+
+            if (!content) {
+              return;
+            }
+
+            for (let i = 0; i < 5; i += 1) {
+              const size = content.getBoundingClientRect().height;
+
+              if (size) {
+                header.style.setProperty(
+                  "--header-image-size",
+                  size + "px"
+                );
+              }
+            }
+          });
+      }
+
+      window.addEventListener("resize", fit);
+      window.addEventListener("beforeprint", fit);
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(fit);
+      }
+
+      fit();
+    }());
+  </script>
+
 
 </body>
 
